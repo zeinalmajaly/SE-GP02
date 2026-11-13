@@ -8,7 +8,7 @@
 | Case-study title | AI Student Success and Dropout-Risk Support System |
 | Course | Software Engineering (CS13477), Fall 2026 (Academic Year 2026/2027) |
 | Instructor | Dr. Samer El Kababji |
-| Repository | `[<GitHub repository URL>](https://github.com/zeinmajali/SE-GP02.git)` |
+| Repository | `<URL>` |
 
 | Student name | Student ID |
 |---|---|

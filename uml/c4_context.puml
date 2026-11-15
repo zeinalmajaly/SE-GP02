@@ -1,0 +1,30 @@
+@startuml c4_context
+title System Context - AI Student Success and Dropout-Risk Support System
+
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam actorStyle awesome
+skinparam defaultTextAlignment center
+
+actor "Advisor" as Advisor
+actor "Administrator" as Admin
+actor "Data / ML Engineer" as Engineer
+
+rectangle "AI Student Success and Dropout-Risk Support System\n(Web dashboard and prediction service)" as System {
+  note as SystemNote
+    Decision-support estimates and explanations only.
+    The system does not make decisions about students.
+    Synthetic/demo identities are used.
+  end note
+}
+
+cloud "UCI ML Repository\nPublic student outcome dataset" as UCI
+
+Advisor --> System : Reviews synthetic records and estimates\nRecords support follow-up
+Admin --> System : Manages demo access\nReviews reports, audit records, and exports
+Engineer --> System : Evaluates and publishes model versions
+Engineer --> UCI : Obtains public dataset
+System --> UCI : Dataset source for model development
+
+@enduml

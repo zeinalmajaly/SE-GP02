@@ -1,0 +1,25 @@
+C4Container
+  title Container Diagram - AI Student Success and Dropout-Risk Support System
+
+  Person(advisor, "Advisor", "Reviews synthetic student records, outcome estimates, explanations, and follow-up actions.")
+  Person(admin, "Administrator", "Manages demo users and reviews cohort reports, audit records, and exports.")
+  Person(mlEngineer, "Data / ML Engineer", "Prepares the public dataset, evaluates the model, and publishes model versions.")
+
+  System_Boundary(system, "AI Student Success and Dropout-Risk Support System") {
+    Container(webApp, "Web Dashboard", "Web application", "Provides authorized Advisor and Administrator views for student records, predictions, explanations, follow-up, reports, and audit history.")
+    Container(api, "Application API", "HTTP API", "Authenticates demo users, validates requests, coordinates workflows, and enforces role-based access.")
+    Container(prediction, "Prediction Service", "Model inference service", "Uses the published model to estimate Dropout, Enrolled, or Graduate outcomes and returns explanatory factors.")
+    ContainerDb(database, "Application Database", "Relational database", "Stores synthetic student records, demo users, follow-up actions, prediction history, audit records, and report data.")
+    Container(modelStore, "Model Artifact Store", "Versioned model files", "Stores evaluated model versions and their metadata for prediction and audit traceability.")
+  }
+
+  System_Ext(uci, "UCI ML Repository", "Source of the public Predict Students' Dropout and Academic Success dataset.")
+
+  Rel(advisor, webApp, "Uses", "HTTPS")
+  Rel(admin, webApp, "Uses", "HTTPS")
+  Rel(webApp, api, "Requests records, predictions, reports, and follow-up actions", "HTTPS / JSON")
+  Rel(api, database, "Reads and writes application data", "SQL")
+  Rel(api, prediction, "Requests outcome estimates and explanations", "Internal API")
+  Rel(prediction, modelStore, "Loads the published model version", "Versioned artifact")
+  Rel(mlEngineer, uci, "Obtains the public dataset")
+  Rel(mlEngineer, modelStore, "Publishes evaluated model versions")

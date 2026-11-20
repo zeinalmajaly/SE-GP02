@@ -1,1 +1,41 @@
+@startuml
+|Advisor|
+start
+:Review student profile and available estimates;
 
+if (Follow-up needed?) then (Yes)
+  :Enter action type, note, assignee, and date;
+
+  if (Link a prediction?) then (Yes)
+    :Select a saved prediction;
+  endif
+
+  |System|
+  :Save follow-up as Open;
+  :Record creation in the audit log;
+
+  while (Follow-up still active?) is (Yes)
+    |Advisor|
+    :Open the follow-up when an update is needed;
+    :Add a note or request a status change;
+
+    |System|
+    if (Requested status transition invalid?) then (Yes)
+      :Display error and retain current status;
+    else (No)
+      :Save update and record audit event;
+    endif
+  endwhile (No)
+
+  :Retain the closed action in follow-up history;
+else (No)
+  |Advisor|
+  :Finish reviewing the student profile;
+endif
+
+stop
+
+legend bottom
+Normal status progression: Open -> In progress -> Resolved -> Closed
+endlegend
+@enduml

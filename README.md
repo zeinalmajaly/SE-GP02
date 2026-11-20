@@ -33,7 +33,7 @@
 
 ## 3. Architecture and Diagrams
 
-The proposed system components and their communication are described in [docs/architecture.md](docs/architecture.md). The editable C4 diagrams are draw.io files; open them with [diagrams.net](https://app.diagrams.net/).
+The proposed system components and their communication are described in [docs/architecture.md](docs/architecture.md). The editable C4 diagrams are draw.io files; open them with [diagrams.net](https://app.diagrams.net/).  Rendered images are in `uml/rendered/`([uml/rendered/](https://vscode.dev/github/zeinmajali/SE-GP02/blob/main/uml/rendered))
 
 | Diagram | Description |
 |---|---|
@@ -53,7 +53,7 @@ Other UML diagrams are maintained separately from the C4 draw.io diagrams.
 README.md
 docs/        Requirements, project description, architecture, plans, testing, and reports
 instructions/ Course project instructions
-uml/         Editable C4 diagrams and other UML diagram files
+uml/      Editablle diagram sources; rendered/ holds exported images
 ```
 
 ## 5. Incremental Development

@@ -1,1 +1,44 @@
+@startuml
+title Group 02 - Use Case Diagram
+left to right direction
 
+actor Advisor
+actor Administrator
+
+rectangle "AI Student Success and Dropout-Risk Support System" {
+  usecase "Sign in and sign out" as Session
+  usecase "View dashboard analytics" as Dashboard
+  usecase "Search and view student records" as Records
+  usecase "View prediction history\nand explanations" as History
+  usecase "View follow-up history" as FollowHistory
+  usecase "View model information" as Model
+  usecase "Request outcome estimate" as Predict
+  usecase "Override or dismiss estimate" as Override
+  usecase "Create and update follow-up" as FollowUp
+  usecase "Review cohort reports" as Reports
+  usecase "Export report data as CSV" as Export
+  usecase "Manage user accounts and roles" as Accounts
+  usecase "View audit log" as Audit
+}
+
+Advisor -- Session
+Advisor -- Dashboard
+Advisor -- Records
+Advisor -- History
+Advisor -- FollowHistory
+Advisor -- Model
+Advisor -- Predict
+Advisor -- Override
+Advisor -- FollowUp
+
+Administrator -- Session
+Administrator -- Dashboard
+Administrator -- Records
+Administrator -- History
+Administrator -- FollowHistory
+Administrator -- Model
+Administrator -- Reports
+Administrator -- Export
+Administrator -- Accounts
+Administrator -- Audit
+@enduml

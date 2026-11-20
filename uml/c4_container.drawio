@@ -90,7 +90,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;verticalAlign=top;align=left;spacingLeft=8;spacingTop=2;fontStyle=1;fontSize=11;" value="Legend" vertex="1">
-          <mxGeometry height="190" width="340" x="1030" y="740" as="geometry" />
+          <mxGeometry height="190" width="340" x="990" y="745" as="geometry" />
         </mxCell>
         <mxCell id="lg1s" parent="1" style="rounded=1;html=1;fillColor=#08427B;strokeColor=#0B2E55;" value="" vertex="1">
           <mxGeometry height="16" width="34" x="1040" y="766" as="geometry" />

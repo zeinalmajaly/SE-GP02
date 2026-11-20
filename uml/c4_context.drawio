@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="context" name="C4 Level 1 - Context">
+    <mxGraphModel dx="1188" dy="665" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=20;fontStyle=1;" value="C4 Level 1: System Context&#xa;AI Student Success and Dropout-Risk Support System" vertex="1">
+          <mxGeometry height="55" width="660" x="220" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="advisor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;spacing=12;" value="Advisor&#xa;Reviews student records and estimates; records follow-up actions." vertex="1">
+          <mxGeometry height="95" width="220" x="90" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;spacing=12;" value="Administrator&#xa;Manages demo access and reviews reports and audit history." vertex="1">
+          <mxGeometry height="95" width="220" x="440" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="engineer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;spacing=12;" value="Data / ML Engineer&#xa;Prepares data, evaluates models, and publishes an approved model version." vertex="1">
+          <mxGeometry height="95" width="220" x="790" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="system" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=15;fontStyle=1;spacing=14;" value="AI Student Success and Dropout-Risk Support System&#xa;Web dashboard and backend provide student-record review, outcome estimates, explanations, reports, and follow-up tracking. Human decision support only." vertex="1">
+          <mxGeometry height="150" width="440" x="330" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="uci" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;spacing=12;" value="UCI Student Performance Dataset&#xa;Public dataset used during model development." vertex="1">
+          <mxGeometry height="95" width="220" x="840" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="advisor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#555555;" target="system">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="200" y="315" />
+              <mxPoint x="400" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#ffffff;strokeColor=none;" value="Reviews records&#xa;and requests estimates" vertex="1">
+          <mxGeometry height="45" width="145" x="205" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="admin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#555555;" target="system">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="335" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l2" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#ffffff;strokeColor=none;" value="Manages access&#xa;and reviews reports" vertex="1">
+          <mxGeometry height="42" width="145" x="490" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="engineer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#555555;" target="system">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="315" />
+              <mxPoint x="700" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#ffffff;strokeColor=none;" value="Evaluates and publishes&#xa;approved model versions" vertex="1">
+          <mxGeometry height="45" width="160" x="705" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="engineer" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#555555;" target="uci">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l4" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#ffffff;strokeColor=none;" value="Downloads public dataset&#xa;for model development" vertex="1">
+          <mxGeometry height="45" width="175" x="910" y="347" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="uci" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#555555;" target="system">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="600" />
+              <mxPoint x="550" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l5" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#ffffff;strokeColor=none;" value="Provides public training data&#xa;used during model preparation" vertex="1">
+          <mxGeometry height="48" width="210" x="755" y="610" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

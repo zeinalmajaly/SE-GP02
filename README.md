@@ -35,17 +35,19 @@
 
 ## 3. Architecture and Diagrams
 
-Editable sources are in `/uml/`, and rendered images are in `/uml/rendered/`. 
+Editable C4 diagrams are in `/uml/` as draw.io files. Open them with [diagrams.net](https://app.diagrams.net/).
 
 | Diagram | Description |
 |---|---|
+| `uml/c4_context.drawio` | C4 Level 1: system context, users, and external dataset |
+| `uml/c4_container.drawio` | C4 Level 2: application containers and communication |
 
 ## 4. Repository Structure
 
 ```
 README.md
 docs/        Requirements, plan, architecture, AI log, traceability matrix, testing, report
-uml/         Editable diagram sources (.puml / .mmd / .drawio); rendered/ holds images
+uml/         Editable C4 diagrams (.drawio) and placeholders for other UML diagrams
 src/         Application source, generated and maintained through Agentic AI
 tests/       Unit, component, integration, and system tests
 data/        Small samples and configuration only

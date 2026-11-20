@@ -1,1 +1,45 @@
+@startuml
+actor Advisor
+participant "Web Dashboard" as Dashboard
+participant "Application API" as API
+database "Application Database" as DB
+participant "Prediction Service" as Prediction
+participant "Model Artifact Store" as Model
 
+Advisor -> Dashboard: Request estimate for selected student
+Dashboard -> API: Submit prediction request
+API -> API: Check signed-in user's role
+
+alt Access denied
+  API --> Dashboard: Access denied
+  Dashboard --> Advisor: Display access error
+else Advisor authorized
+  API -> DB: Record prediction request in audit log
+  API -> DB: Read student record
+  DB --> API: Return student data
+  API -> API: Validate required student data
+
+  alt Missing or invalid data
+    API --> Dashboard: Return validation error
+    Dashboard --> Advisor: Display validation error
+  else Valid student data
+    API -> Prediction: Request estimate with validated data
+    Prediction -> Prediction: Prepare model features
+    Prediction -> Model: Load published model
+    Model --> Prediction: Return model and version or unavailable status
+
+    alt Model available
+      Prediction -> Prediction: Generate estimate, probabilities, and explanation
+      Prediction --> API: Return outcome, probabilities, explanation, and model version
+      API -> DB: Save prediction and generation time
+      DB --> API: Confirm save
+      API --> Dashboard: Return saved result
+      Dashboard --> Advisor: Display outcome, all class probabilities,\ncontributing factors, model version, generation time,\nand decision-support notice
+    else Model unavailable
+      Prediction --> API: Report unavailable model
+      API --> Dashboard: Return prediction unavailable error
+      Dashboard --> Advisor: Display prediction unavailable error
+    end
+  end
+end
+@enduml

@@ -1,4 +1,4 @@
-# SE-GP02-AI Student Success and Dropout-Risk Support System
+# SE-GP02: AI Student Success and Dropout-Risk Support System
 
 ## 1. Group Information
 
@@ -8,67 +8,65 @@
 | Case-study title | AI Student Success and Dropout-Risk Support System |
 | Course | Software Engineering (CS13477), Fall 2026 (Academic Year 2026/2027) |
 | Instructor | Dr. Samer El Kababji |
-| Repository | `<URL>` |
+| Repository | [SE-GP02 on GitHub](https://github.com/zeinalmajaly/SE-GP02) |
 
 | Student name | Student ID |
 |---|---|
-| `Zein Al-Majali` | `20230185` |
-| `Randa Altajee` | `20230391` |
-| `Ahmed Sabri` | `20230018` |
-| `Nicole Ansara` | `20230273` |
+| Zein Al-Majali | 20230185 |
+| Randa Altajee | 20230391 |
+| Ahmed Sabri | 20230018 |
+| Nicole Ansara | 20230273 |
 
 ## 2. Project Overview
 
-**System purpose.** A decision-support system that estimates a student's academic outcome (Dropout / Enrolled / Graduate) from enrollment and academic variables. Estimates are shown as decision-support information only and never as an automatic decision about a student.
+**System purpose.** A decision-support system that estimates a student's academic outcome (Dropout / Enrolled / Graduate) from enrollment and academic variables. Estimates are decision-support information only; they are not automatic decisions about students.
 
-**Expected final outcome.** A functional web dashboard where authorized users (Advisor, Administrator) can:
-- inspect student records (synthetic identities only);
-- obtain model-based risk/outcome estimates with a visible disclaimer;
-- view explanatory factors and global feature summaries;
-- record and track follow-up actions with an audit log; and
-- view cohort reports and a model-limitations page.
+**Expected outcome.** A web dashboard for authorized users to:
 
-**Data.** UCI *Predict Students' Dropout and Academic Success* dataset (4,424 records, 36 features). The raw dataset is not committed; see `data/README` or `docs/requirements.md` for download instructions.
+- inspect synthetic/demo student records;
+- obtain model-based outcome estimates and see a clear disclaimer;
+- view explanatory factors and feature summaries;
+- record and track support follow-up actions with an audit trail; and
+- review cohort reports and model limitations.
 
-**Main technology / tools** 
-
+**Data.** The project uses the UCI *Predict Students' Dropout and Academic Success* dataset for model development. The raw dataset is not committed to this repository. See [requirements](docs/requirements.md) for project data details.
 
 ## 3. Architecture and Diagrams
 
-Editable C4 diagrams are in `/uml/` as draw.io files. Open them with [diagrams.net](https://app.diagrams.net/).
+The proposed system components and their communication are described in [docs/architecture.md](docs/architecture.md). The editable C4 diagrams are draw.io files; open them with [diagrams.net](https://app.diagrams.net/).
 
 | Diagram | Description |
 |---|---|
-| `uml/c4_context.drawio` | C4 Level 1: system context, users, and external dataset |
-| `uml/c4_container.drawio` | C4 Level 2: application containers and communication |
+| [C4 Level 1: System Context](uml/c4_context.drawio) | System boundary, user roles, and the external public dataset source. |
+| [C4 Level 2: Containers](uml/c4_container.drawio) | Dashboard, API, prediction service, database, model artifact store, and communication paths. |
+| Use case diagram | User-facing functions for Advisors and Administrators. |
+| Sequence diagrams | Important interactions, such as student search and prediction generation. |
+| Class diagram | Main application classes and their relationships. |
+| Entity Relationship Diagram (ERD) | Planned database entities and their relationships. |
+| Activity diagram | Workflows such as generating predictions and recording support actions. |
+
+Other UML diagrams are maintained separately from the C4 draw.io diagrams.
 
 ## 4. Repository Structure
 
-```
+```text
 README.md
-docs/        Requirements, plan, architecture, AI log, traceability matrix, testing, report
-uml/         Editable C4 diagrams (.drawio) and placeholders for other UML diagrams
-src/         Application source, generated and maintained through Agentic AI
-tests/       Unit, component, integration, and system tests
-data/        Small samples and configuration only
-prompts/     Markdown records of every meaningful agent task
-config/      Configuration files
+docs/        Requirements, project description, architecture, plans, testing, and reports
+instructions/ Course project instructions
+uml/         Editable C4 diagrams and other UML diagram files
 ```
 
 ## 5. Incremental Development
 
-| Version | Capability introduced |
-|---|---|
-
-Details are in `docs/incremental_development_plan.md`.
+The project is planned in three increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
 
 ## 6. Contributions
 
 | Member | Main responsibility | Commits |
 |---|---|---|
-| `<Member A>` |  | `<n>` |
-| `<Member B>` |  | `<n>` |
-| `<Member C>` |  | `<n>` |
-| `<Member D>` |  | `<n>` |
+| Zein Al-Majali |  | `<n>` |
+| Randa Altajee |  | `<n>` |
+| Ahmed Sabri |  | `<n>` |
+| Nicole Ansara |  | `<n>` |
 
-*Commit count alone does not determine contribution quality. Each member also reviews AI-generated output on a rotating basis (see `docs/ai_development_log.md`).*
+Commit count alone does not determine contribution quality. Members also review AI-generated output on a rotating basis; see [docs/ai_development_log.md](docs/ai_development_log.md).

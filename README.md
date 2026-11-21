@@ -52,8 +52,7 @@ Other UML diagrams are maintained separately from the C4 draw.io diagrams.
 ```text
 README.md
 docs/        Requirements, project description, architecture, plans, testing, and reports
-instructions/ Course project instructions
-uml/      Editablle diagram sources; rendered/ holds exported images
+uml/      Editable diagram sources; rendered/ holds exported images
 src/ Application source, generated and maintained through Agentic AI
 tests/ Unit, component, integration, and system tests
 data/ README, small samples and configuration
@@ -64,15 +63,15 @@ instructions/ Course project instructions
 
 ## 5. Incremental Development
 
-The project is planned in three increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
+The project is planned in five increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
 
 ## 6. Contributions
 
 | Member | Main responsibility | Commits |
 |---|---|---|
-| Zein Al-Majali |  | `<n>` |
-| Randa Altajee |  | `<n>` |
-| Ahmed Sabri |  | `<n>` |
-| Nicole Ansara |  | `<n>` |
+| Zein Al-Majali | Create Repository, README, requirements, project description, prompts folder and data folder and reviewing others' work| `30` |
+| Randa Altajee | use case description, use case diagram, sequence diagram and activity diagram | `13` |
+| Ahmed Sabri | Architecture, C4 diagrams, Class diagram, and ERD diagram | `19` |
+| Nicole Ansara | incremental develpoment plan and traceability matrix  | `6` |
 
 Commit count alone does not determine contribution quality. Members also review AI-generated output on a rotating basis; see [docs/ai_development_log.md](docs/ai_development_log.md).

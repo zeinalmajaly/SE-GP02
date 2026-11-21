@@ -1,72 +1,103 @@
 ﻿# Traceability Matrix
-
-Derived from the Incremental Development Plan. The plan only gives requirement **ranges** for some items (for example FR-13 to FR-17), so individual descriptions marked with `*` are inferred from the acceptance criteria. Replace them with the exact wording from your requirements document. Test entries are planned test types from the plan, not file names; fill in real test IDs as you write them.
-
-## Functional requirements
-
-| Req | Description | Design version / artifacts | Implementation (module) | Verification (planned test) | Release |
-|---|---|---|---|---|---|
-| FR-01 | Sign-in * | v0.1.0-design: `use_case.puml`, `sequence_diagram.puml`, `use_cases.md` | `src/api`, `src/db` | API tests (access control) | v0.1.0 |
-| FR-02 | Sign-out * | v0.1.0-design: `use_case.puml`, `use_cases.md` | `src/api`, `src/dashboard` | API tests | v0.1.0 |
-| FR-03 | Role-based access * | v0.1.0-design: `use_case.puml`, `class_diagram.drawio` (roles, enums) | `src/api`, `src/db` | API tests (access control) | v0.1.0 |
-| FR-04 | One student record per dataset row with synthetic ID and name | v0.1.0-design: `c4_container.drawio`, `erd.drawio` | `src/scripts/load_dataset.py`, `src/db` | Unit tests (loader) | v0.1.0 |
-| FR-05 | Paginated student list * | v0.1.0-design: `use_case.puml`, `activity_diagram.puml` | `src/api`, `src/dashboard` | API tests, demo | v0.1.0 |
-| FR-06 | Search by ID and name * | v0.1.0-design: `use_case.puml` | `src/api`, `src/dashboard` | API tests | v0.1.0 |
-| FR-07 | Filter student list * | v0.1.0-design: `use_case.puml` | `src/api`, `src/dashboard` | API tests | v0.1.0 |
-| FR-08 | Student profile (enrollment, academic, demographic fields) | v0.1.0-design: `class_diagram.drawio`, `erd.drawio` | `src/api`, `src/dashboard`, `src/db` | API tests, demo | v0.1.0 |
-| FR-09 | Dashboard outcome distribution | v0.1.0-design: `use_case.puml` | `src/dashboard` | Demo, system check | v0.1.0 |
-| FR-10 | Reject invalid input with clear message | v0.1.0-design: `activity_diagram.puml` | `src/api` (validation) | Unit tests (validation) | v0.1.0 |
-| FR-11 | Train and evaluate models; macro-F1, per-class recall, confusion matrix | v0.2.0-design: `ml_documentation.md`, `erd.drawio` (confusion matrix field) | `src/ml/train.py`, `evaluate.py`, `preprocessing.py` | Unit tests (preprocessing), component tests | v0.2.0-model |
-| FR-12 | Versioned model file with stored evaluation metadata | v0.2.0-design: `ml_documentation.md`, ERD update (model version metadata) | `src/ml`, `models/` | Component tests (model loading) | v0.2.0-model |
-| FR-13 | Advisor requests an estimate and sees the outcome * | v0.2.0-design: `sequence_diagram.puml`, component diagram | `src/api` (prediction endpoint), `src/dashboard` | Integration tests, system test | v0.2.0 |
-| FR-14 | All class probabilities shown * | v0.2.0-design: `sequence_diagram.puml` | `src/api`, `src/dashboard` | Integration tests (probability sum) | v0.2.0 |
-| FR-15 | Generation time shown * | v0.2.0-design: `sequence_diagram.puml` | `src/api`, `src/dashboard` | Integration tests | v0.2.0 |
-| FR-16 | Model version saved and shown with each prediction | v0.1.0-design: `sequence_diagram.puml`; v0.2.0-design: ERD update | `src/api`, `src/db` | Integration tests | v0.2.0 |
-| FR-17 | Decision-support disclaimer on every estimate * | v0.2.0-design: `ml_documentation.md` | `src/dashboard` | System test | v0.2.0 |
-| FR-18 | Estimates stored and shown in prediction history | v0.2.0-design: `erd.drawio` | `src/db`, `src/api`, `src/dashboard` | Integration tests | v0.2.0 |
-| FR-19 | Override or dismiss estimate with reason; original estimate kept | v0.1.0-design: ERD (overridden outcome); v0.4.0-design: state and activity diagrams | `src/api`, `src/db` | Workflow and database tests | v0.4.0 |
-| FR-20 | Per-student contributing factors in plain language | v0.3.0-design: sequence and class diagrams, method choice | `src/ml/explain.py`, `src/dashboard` | Unit tests (explanation consistent with prediction) | v0.3.0 |
-| FR-21 | Global feature summary | v0.3.0-design: class diagram, `ml_documentation.md` | `src/ml/explain.py`, `src/dashboard` | Unit tests, demo | v0.3.0 |
-| FR-22 | Create follow-up (type, note, assignee, date), starting Open, optionally linked to a prediction | v0.4.0-design: state diagram, ERD update | `src/api`, `src/db` | Workflow and database tests | v0.4.0 |
-| FR-23 | Notes kept without overwriting | v0.1.0-design: ERD; v0.4.0-design: activity update | `src/api`, `src/db` | Workflow and database tests | v0.4.0 |
-| FR-24 | Status workflow (Open, In progress, Resolved, Closed); invalid transitions rejected; history kept | v0.4.0-design: state diagram | `src/api`, `src/db` | Workflow tests (every valid and invalid transition) | v0.4.0 |
-| FR-25 | Audit entries (actor, action, time) for predictions and changes | v0.1.0-design: `class_diagram.drawio`, `erd.drawio`; v0.5.0-design: DFD | `src/api`, `src/db` (audit table and writer) | Integration tests, database tests | v0.2.0 (start), v0.4.0 |
-| FR-26 | Administrator views audit log; entries cannot be edited or deleted | v0.5.0-design: audit view mock-up | `src/api`, `src/dashboard` | Access-control tests | v0.5.0 |
-| FR-27 | Cohort report filtered by course and risk level | v0.5.0-design: report mock-up, DFD | `src/api`, `src/dashboard` | Tests, demo | v0.5.0 |
-| FR-28 | CSV export with synthetic identities only | v0.5.0-design: export mock-up, DFD | `src/api` | Tests (export content) | v0.5.0 |
-| FR-29 | Administrator creates, deactivates, assigns roles; changes audited | v0.5.0-design: user management mock-up | `src/api`, `src/dashboard`, `src/db` | Tests, access-control tests | v0.5.0 |
-| FR-30 | Limitations page (intended use, performance, limitations, disclaimer) | v0.5.0-design: limitations page mock-up | `src/dashboard` | Demo, tests | v0.5.0 |
-
-## Non-functional requirements mentioned in the plan
-
-| Req | Description | Design / evidence | Verification | Release |
-|---|---|---|---|---|
-| NFR-01 | Browser compatibility | Final checks | Browser compatibility check | v1.0.0 |
-| NFR-02 | Pages load within 3 seconds in demo setup | v0.1.0 scope | Demo timing | v0.1.0 |
-| NFR-03 | Prediction completes within 5 seconds | v0.2.0 scope | Demo timing, system test | v0.2.0 |
-| NFR-04 | Clear error on invalid input or unavailable model; no estimate stored | v0.2.0-design: component and sequence diagrams (model loading, failures) | Integration tests | v0.2.0 |
-| NFR-06 | CSV export contains only synthetic identities | v0.5.0-design: DFD | Export tests | v0.5.0 |
-| NFR-07 | Passwords stored hashed | v0.1.0-design | Unit tests (password hashing) | v0.1.0 |
-| NFR-08 | Audit entries not editable or deletable through the app | v0.5.0-design | Access-control tests | v0.2.0 (foundation), v0.5.0 |
-| NFR-09 | Wording does not claim a factor causes the outcome | v0.3.0-design: wording rule stated | Tests on explanation wording | v0.3.0 |
-| NFR-10 | ML requirement (referenced for v0.2.0 design and model; text not in the plan) | v0.2.0-design: `ml_documentation.md` | Component tests | v0.2.0-model |
-| NFR-12 | Reproducible training (fixed seed, same metrics on rerun) | v0.2.0-design: split, seed, metrics documented | Rerun comparison | v0.2.0-model |
-| NFR-13 | Accessibility | Final checks | Accessibility check | v1.0.0 |
-| NFR-14 | Usability | Final checks | Usability check | v1.0.0 |
-| NFR-17 | Clean-machine installation and run instructions | Run instructions | Clean-machine install | v1.0.0 |
-
-NFR-05, NFR-11, NFR-15 and NFR-16 are not referenced in the plan; add them from your requirements document.
-
+ 
+Structure follows `docs/requirements.md` exactly: the same section grouping (5.1 to 5.5 and 6), the same requirement IDs in the same order, and the requirement title and description copied verbatim. The trace columns follow the course instructions (section 3.4): requirement, use case / design element, increment / version, implementation module(s), test(s), and status. Version and requirement links come from `docs/incremental_development_plan.md`.
+ 
+**Status values.** *Design done; implementation planned*: the v0.1.0-design artifacts exist in the repository and `src/` and `tests/` do not yet. *Planned*: the design artifact, code and tests are all still to be produced. Items marked "(planned)" in the design column do not exist yet. Test entries are planned test types from the plan, not file names; replace them with real test IDs as tests are written.
+ 
+## 5. Functional Requirements
+ 
+### 5.1 Access, Data, and Records
+ 
+| Requirement ID | Requirement | Description | Use Case / Design Element | Increment / Version | Implementation Module(s) | Test(s) | Status |
+|---|---|---|---|---|---|---|---|
+| FR-01 | User sign-in | The system shall require a user to sign in with credentials before accessing student records, predictions, follow-up actions, or reports. | `uml/use_case.puml` (Sign in and sign out); `docs/use_cases.md` (Actors); `uml/class_diagram.drawio` (User.signIn); `uml/erd.drawio` (USER); `docs/architecture.md` §4.2 | v0.1.0-design → v0.1.0 | `src/api`, `src/db` | API tests (access control); unit tests (password hashing) | Design done; implementation planned |
+| FR-02 | Role-based access | The system shall provide the roles Advisor and Administrator and restrict functions as defined in the role permissions table. | `docs/requirements.md` §4 (role permissions); `uml/use_case.puml` (actor-to-use-case links); `uml/class_diagram.drawio` (UserRole enum); `uml/erd.drawio` (USER.role); `uml/sequence_diagram.puml` (role check); `docs/use_cases.md` | v0.1.0-design → v0.1.0 | `src/api`, `src/db` | API tests (access control per role) | Design done; implementation planned |
+| FR-03 | Sign-out | The system shall allow a signed-in user to sign out and end the session. | `uml/use_case.puml` (Sign in and sign out); `uml/class_diagram.drawio` (User.signOut); `docs/use_cases.md` (Actors) | v0.1.0-design → v0.1.0 | `src/api`, `src/dashboard` | API tests (session ends on sign-out) | Design done; implementation planned |
+| FR-04 | Documented dataset and synthetic identities | The system shall provide a documented script that loads the UCI dataset into the database and assigns each record a synthetic student ID and name. | `uml/c4_container.drawio` (Data Loading Script, UCI Dataset); `uml/erd.drawio` (STUDENT_RECORD); `uml/class_diagram.drawio` (StudentRecord); `docs/architecture.md` §4.3, §4.5 | v0.1.0-design → v0.1.0 | `src/scripts/load_dataset.py`, `src/db`; script documentation (README / docs) | Unit tests (loader: one record per row, synthetic ID and name) | Design done; implementation planned |
+| FR-05 | Student list | The system shall display a paginated list of student records. | `uml/use_case.puml` (Search and view student records); `docs/use_cases.md` (Review Student Records and Dashboard Analytics); `docs/architecture.md` §5.2 | v0.1.0-design → v0.1.0 | `src/api`, `src/dashboard` | API tests (pagination); demo | Design done; implementation planned |
+| FR-06 | Search students | The system shall allow a user to search students by student ID or name. | `uml/use_case.puml` (Search and view student records); `docs/use_cases.md` (Review Student Records, step 2) | v0.1.0-design → v0.1.0 | `src/api`, `src/dashboard` | API tests (search by ID and by name) | Design done; implementation planned |
+| FR-07 | Filter students | The system shall allow a user to filter students by course, enrollment attributes, and outcome. The latest predicted outcome shall be added as a filter once predictions exist. | `uml/use_case.puml` (Search and view student records); `docs/use_cases.md` (step 2); `uml/erd.drawio` (PREDICTION.predicted_outcome, for the latest-outcome filter) | v0.1.0-design → v0.1.0 (course, enrollment, outcome filters); v0.2.0 (latest predicted outcome filter) | `src/api`, `src/dashboard` | API tests (each filter); API test for predicted-outcome filter after v0.2.0 | Design done; implementation planned |
+| FR-08 | Student profile | The system shall display a selected student's enrollment, academic, and demographic information. | `uml/class_diagram.drawio` (StudentRecord.getProfile); `uml/erd.drawio` (STUDENT_RECORD); `docs/use_cases.md` (step 3) | v0.1.0-design → v0.1.0 | `src/api`, `src/dashboard`, `src/db` | API tests; demo | Design done; implementation planned |
+| FR-09 | Dashboard analytics | The system shall display summary statistics and charts of student outcomes (and risk levels once predictions exist). | `uml/use_case.puml` (View dashboard analytics); `docs/use_cases.md` (step 1); risk-level definition in `docs/ml_documentation.md` (planned) | v0.1.0-design → v0.1.0 (outcome charts); v0.2.0 (risk levels once predictions exist) | `src/dashboard`, `src/api` | Demo; system check; test for risk-level charts after v0.2.0 | Design done; implementation planned |
+| FR-10 | Input validation | The system shall validate user input and reject invalid or incomplete data with a clear message. | `uml/sequence_diagram.puml` (validation-error branch); `docs/architecture.md` §8 (validate before prediction) | v0.1.0-design → v0.1.0 | `src/api` (validation) | Unit tests (validation: invalid and incomplete input rejected with message) | Design done; implementation planned |
+ 
+### 5.2 Prediction Service
+ 
+| Requirement ID | Requirement | Description | Use Case / Design Element | Increment / Version | Implementation Module(s) | Test(s) | Status |
+|---|---|---|---|---|---|---|---|
+| FR-11 | Train and evaluate model | The system shall provide a reproducible way for the project team to train and evaluate a model on the UCI dataset, reporting at least macro-F1, per-class recall, and a confusion matrix. | `uml/c4_container.drawio` (Model Training Pipeline); `uml/erd.drawio` (MODEL_VERSION.macro_f1, per_class_recall, confusion_matrix); `uml/class_diagram.drawio` (ModelVersion); `docs/ml_documentation.md` (planned) | v0.2.0-design → v0.2.0-model | `src/ml/preprocessing.py`, `src/ml/train.py`, `src/ml/evaluate.py` | Unit tests (preprocessing); component tests (metrics reported); rerun comparison | Planned |
+| FR-12 | Publish model version | The system shall allow the team to publish a versioned model file for use by the prediction service. | `uml/c4_container.drawio` (Model Artifact Store); `uml/erd.drawio` (MODEL_VERSION); `docs/architecture.md` §5.3; ERD update (planned) | v0.2.0-design → v0.2.0-model | `src/ml`, `models/` | Component tests (model loading, version ID, stored metadata) | Planned |
+| FR-13 | Request estimate | The system shall allow an Advisor to request an outcome estimate for an individual student using the published model. | `uml/use_case.puml` (Request outcome estimate); `uml/sequence_diagram.puml`; `docs/use_cases.md` (Request an Outcome Estimate); `docs/requirements.md` §4 (role permissions); component diagram update (planned) | v0.2.0-design → v0.2.0 | `src/api` (prediction endpoint), `src/dashboard`, prediction service | Integration tests (API + database + model); system test; test that Administrator is denied | Planned |
+| FR-14 | Display estimate | The system shall present the estimate as one of Dropout, Enrolled, or Graduate. | `uml/sequence_diagram.puml` (display outcome); `uml/class_diagram.drawio` (OutcomeClass enum); `uml/erd.drawio` (PREDICTION.predicted_outcome) | v0.2.0-design → v0.2.0 | `src/api`, `src/dashboard` | Integration tests (output is one of Dropout, Enrolled, Graduate) | Planned |
+| FR-15 | Display probabilities | The system shall display the probability of each outcome class alongside the estimate. | `uml/sequence_diagram.puml` (all class probabilities); `uml/erd.drawio` (PREDICTION.prob_dropout, prob_enrolled, prob_graduate) | v0.2.0-design → v0.2.0 | `src/api`, `src/dashboard` | Component tests (probability sum); integration tests | Planned |
+| FR-16 | Display model version | The system shall display the model version and the time of generation with every estimate. | `uml/sequence_diagram.puml` (model version, generation time displayed); `uml/erd.drawio` (PREDICTION.model_version_id, generated_at); `docs/architecture.md` §4.4 | v0.2.0-design → v0.2.0 | `src/api`, `src/db`, `src/dashboard` | Integration tests (version and time stored and displayed) | Planned |
+| FR-17 | Decision-support disclaimer | The system shall label every displayed estimate as decision-support information and state that it is not an automatic decision about the student. | `uml/sequence_diagram.puml` (decision-support notice); `docs/architecture.md` §4.1, §8; `docs/use_cases.md` | v0.2.0-design → v0.2.0 | `src/dashboard` | System test (notice on every displayed estimate, including history) | Planned |
+| FR-18 | Prediction history | The system shall store each generated estimate and display the previous estimates for a student. | `uml/use_case.puml` (View prediction history and explanations); `uml/erd.drawio` (PREDICTION); `docs/use_cases.md` (step 3) | v0.2.0-design → v0.2.0 | `src/db`, `src/api`, `src/dashboard` | Integration tests (each estimate stored; previous estimates listed) | Planned |
+| FR-19 | Override or dismiss estimate | The system shall allow an Advisor to override or dismiss an estimate by giving a reason, and shall keep the original estimate on record. | `uml/use_case.puml` (Override or dismiss estimate); `uml/class_diagram.drawio` (Prediction.recordOverride, recordDismissal; DecisionStatus enum); `uml/erd.drawio` (PREDICTION.override_outcome, decision_status, decision_reason); `docs/use_cases.md` (Override or Dismiss an Estimate); state and activity updates (planned) | v0.1.0-design (data model); v0.4.0-design → v0.4.0 | `src/api`, `src/db`, `src/dashboard` | Workflow and database tests (reason required; original estimate retained; Administrator denied) | Planned |
+ 
+### 5.3 Explanations
+ 
+| Requirement ID | Requirement | Description | Use Case / Design Element | Increment / Version | Implementation Module(s) | Test(s) | Status |
+|---|---|---|---|---|---|---|---|
+| FR-20 | Individual explanation | The system shall show the main factors contributing to an individual estimate, using the explanation method documented in the architecture. | `uml/sequence_diagram.puml` (explanation generated); `uml/erd.drawio` (PREDICTION.explanation_factors); `uml/use_case.puml` (View prediction history and explanations); explanation method choice in `docs/ml_documentation.md` (planned) | v0.3.0-design → v0.3.0 | `src/ml/explain.py`, `src/dashboard` | Unit tests (explanation consistent with prediction); demo | Planned |
+| FR-21 | Global feature summary | The system shall provide a summary of the features that are most important to the model overall. | `uml/class_diagram.drawio` (ModelVersion.globalFeatureSummary); `uml/erd.drawio` (MODEL_VERSION.global_feature_summary); `docs/use_cases.md` (Review Model Information, step 2) | v0.3.0-design → v0.3.0 | `src/ml/explain.py`, `src/dashboard` | Unit tests; demo | Planned |
+ 
+### 5.4 Follow-up Workflow
+ 
+| Requirement ID | Requirement | Description | Use Case / Design Element | Increment / Version | Implementation Module(s) | Test(s) | Status |
+|---|---|---|---|---|---|---|---|
+| FR-22 | Record follow-up action | The system shall allow an Advisor to record a follow-up action for a student with action type, note, assignee, date, and initial status Open, optionally linked to a prediction. | `uml/activity_diagram.puml` (create follow-up as Open, optional prediction link); `uml/use_case.puml` (Create and update follow-up); `uml/class_diagram.drawio` (FollowUpAction); `uml/erd.drawio` (FOLLOW_UP_ACTION); `docs/use_cases.md` (Manage Advisor Follow-Up, steps 1-3) | v0.1.0-design (data model); v0.4.0-design → v0.4.0 | `src/api`, `src/db`, `src/dashboard` | Workflow and database tests (fields, initial status Open, optional link) | Planned |
+| FR-23 | Update follow-up | The system shall allow an Advisor to add notes and change the status of a follow-up through Open, In progress, Resolved, and Closed, and shall reject invalid transitions. | `uml/activity_diagram.puml` (add note, request status change, invalid transition rejected); `uml/class_diagram.drawio` (FollowUpAction.addNote, changeStatus; FollowUpStatus enum); `uml/erd.drawio` (FOLLOW_UP_STATUS_HISTORY); `docs/use_cases.md` (steps 4-5); state diagram (planned) | v0.1.0-design (data model); v0.4.0-design → v0.4.0 | `src/api`, `src/db` | Workflow tests (every valid and invalid transition); database tests (notes appended, not overwritten) | Planned |
+| FR-24 | View follow-up history | The system shall allow authorized users to view a student's follow-up actions and their current status and history. | `uml/use_case.puml` (View follow-up history); `uml/erd.drawio` (FOLLOW_UP_STATUS_HISTORY); `docs/use_cases.md` (step 6: both roles can view) | v0.1.0-design (data model); v0.4.0-design → v0.4.0 | `src/api`, `src/db`, `src/dashboard` | Workflow and database tests (status and history shown); access test (Administrator read-only) | Planned |
+ 
+### 5.5 Administration, Reporting, and Responsible AI
+ 
+| Requirement ID | Requirement | Description | Use Case / Design Element | Increment / Version | Implementation Module(s) | Test(s) | Status |
+|---|---|---|---|---|---|---|---|
+| FR-25 | Audit recording | The system shall record an audit entry (action, actor, time) for prediction requests, estimate overrides, follow-up changes, report exports, and user-management changes. | `uml/class_diagram.drawio` (AuditEvent); `uml/erd.drawio` (AUDIT_EVENT); `uml/sequence_diagram.puml` (prediction request logged); `uml/activity_diagram.puml` (follow-up audit); `docs/use_cases.md`; DFD (planned) | v0.1.0-design (data model); v0.2.0 (prediction requests); v0.4.0 (overrides, follow-up changes); v0.5.0 (report exports, user management) | `src/api`, `src/db` (audit table and writer) | Integration tests; database tests (one test per audited action type) | Planned |
+| FR-26 | View audit log | The system shall allow an Administrator to view the audit log. | `uml/use_case.puml` (View audit log); `docs/use_cases.md` (Manage Accounts and Review the Audit Log, step 3); audit view mock-up (planned) | v0.5.0-design → v0.5.0 | `src/api`, `src/dashboard` | Access-control tests (Administrator only) | Planned |
+| FR-27 | Cohort reports | The system shall allow an Administrator to view cohort-level summaries of predicted outcomes, filterable by course and risk level. | `uml/use_case.puml` (Review cohort reports); `docs/use_cases.md` (Review and Export Cohort Reports, steps 1-2); report mock-up and DFD (planned); risk-level definition (planned) | v0.5.0-design → v0.5.0 | `src/api`, `src/dashboard` | Tests (filter by course and risk level); demo; access test (Advisor denied) | Planned |
+| FR-28 | Export reports | The system shall allow an Administrator to export permitted report data as CSV. | `uml/use_case.puml` (Export report data as CSV); `docs/use_cases.md` (step 3); export mock-up and DFD (planned); definition of permitted report data (planned) | v0.5.0-design → v0.5.0 | `src/api` | Tests (export content; synthetic identities only; export audited) | Planned |
+| FR-29 | Manage user accounts | The system shall allow an Administrator to create, deactivate, and assign roles to user accounts. | `uml/use_case.puml` (Manage user accounts and roles); `uml/erd.drawio` (USER.is_active, role); `docs/use_cases.md` (Manage Accounts, steps 1-2); user management mock-up (planned) | v0.5.0-design → v0.5.0 | `src/api`, `src/dashboard`, `src/db` | Tests (create, deactivate, assign role; changes audited); access-control tests | Planned |
+| FR-30 | Model limitations page | The system shall provide a page describing intended use, model performance, known limitations, and the decision-support disclaimer. | `uml/use_case.puml` (View model information); `uml/class_diagram.drawio` and `uml/erd.drawio` (ModelVersion intended_use, limitations); `docs/use_cases.md` (Review Model Information, step 1); limitations page mock-up (planned) | v0.5.0-design → v0.5.0 | `src/dashboard` | Demo; tests (page shows intended use, performance, limitations, disclaimer) | Planned |
+ 
+## 6. Non-Functional Requirements
+ 
+| Requirement ID | Category | Requirement | Design Element / Evidence | Increment / Version | Implementation Module(s) | Test(s) | Status |
+|---|---|---|---|---|---|---|---|
+| NFR-01 | Usability | The dashboard shall use consistent labels and navigation for records, predictions, explanations, follow-ups, reports, and model limitations, so an Advisor can reach any of them within three clicks of the home page. | Navigation structure in `docs/architecture.md` §4.1; final usability check | v1.0.0 | `src/dashboard` | Usability check (every feature within three clicks of home) | Planned |
+| NFR-02 | Performance | Under the documented demonstration setup, student search, record view, and dashboard pages shall load within 3 seconds. | `docs/architecture.md` §4.1 (demo setup) | v0.1.0 (search, record view, dashboard); re-checked at v1.0.0 | `src/api`, `src/dashboard` | Demo timing (under 3 seconds) | Planned |
+| NFR-03 | Prediction response time | Under the documented demonstration setup, a valid prediction request shall complete within 5 seconds, excluding initial startup and model loading. | `uml/sequence_diagram.puml` | v0.2.0 | `src/api`, prediction service | Demo timing; system test (under 5 seconds, excluding startup and model loading) | Planned |
+| NFR-04 | Reliability | If a prediction cannot be generated because of invalid input or an unavailable model, the system shall show an understandable error and shall not present a fabricated or stale estimate as a new result. The system shall not crash on invalid input. | `uml/sequence_diagram.puml` (validation-error and model-unavailable branches); component and sequence updates (planned); `docs/architecture.md` §4.4, §8 | v0.2.0-design → v0.2.0 | `src/api`, `src/dashboard` | Integration tests (clear error; no estimate stored or shown as new; no crash on invalid input) | Design done; implementation planned |
+| NFR-05 | Data integrity | Data stored by the system (predictions, follow-ups, users, audit entries) shall persist across application restarts. | `uml/c4_container.drawio` (Application Database); `docs/architecture.md` §4.3 | v0.1.0 (users, students); v0.2.0 (predictions, audit); v0.4.0 (follow-ups); verified at v1.0.0 | `src/db` | Database tests (data survives application restart) | Planned |
+| NFR-06 | Privacy | The dashboard, exports, and repository shall contain only synthetic identities and shall not require real student personal data. | `uml/c4_container.drawio` (Data Loading Script); `docs/architecture.md` §7, §8 | v0.1.0 (loader); v0.5.0 (CSV export); verified at v1.0.0 | `src/scripts`, `src/api`, `src/dashboard` | Loader test; export tests; repository check (no raw dataset or real data) | Planned |
+| NFR-07 | Security | Protected functions shall be available only to signed-in users, role-based authorization shall be enforced on the server side, and passwords shall be stored hashed. | `uml/class_diagram.drawio` (User.passwordHash); `uml/erd.drawio` (USER.password_hash); `uml/sequence_diagram.puml` (server-side role check); `docs/architecture.md` §4.2 | v0.1.0-design → v0.1.0 | `src/api`, `src/db` | Unit tests (password hashing); API tests (unauthenticated and wrong-role calls rejected) | Design done; implementation planned |
+| NFR-08 | Auditability | Audit entries shall be timestamped and attributable to a user, and shall not be modifiable or deletable through the application. | `uml/erd.drawio` (AUDIT_EVENT.occurred_at, actor_user_id); `uml/class_diagram.drawio` (AuditEvent); audit view mock-up (planned) | v0.2.0 (foundation); v0.5.0 | `src/api`, `src/db` | Access-control tests (no edit or delete path); integration tests (timestamp and actor present) | Planned |
+| NFR-09 | Explainability | Explanations shall use language understandable to an Advisor and shall not imply that contributing factors establish causation. | Wording rule stated in v0.3.0-design (planned) | v0.3.0-design → v0.3.0 | `src/ml/explain.py`, `src/dashboard` | Tests on explanation wording (no causal claims) | Planned |
+| NFR-10 | Responsible use | The system shall not automate student decisions, interventions, or notifications. Sensitive attributes (gender, nationality, marital status, age at enrollment) shall be identified in the ML documentation together with how the team handles them. | `docs/architecture.md` §1; `docs/ml_documentation.md` sensitive-attribute section (planned); DFD with no automatic action path (planned) | v0.2.0-design; v0.2.0-model; v0.5.0-design | `src/ml`, `src/api` | Documentation review; component tests; check that no notification or automation feature exists | Planned |
+| NFR-11 | Maintainability | Data access, model training and evaluation, prediction logic, and the user interface shall be organized as separable modules documented in `docs/architecture.md`. | `docs/architecture.md` §3, §4; `uml/c4_container.drawio` | v0.1.0-design; verified at v1.0.0 | `src/db`, `src/ml`, `src/api`, `src/dashboard`, `src/scripts` | Architecture review (modules match `docs/architecture.md`) | Design done; implementation planned |
+| NFR-12 | Reproducibility | Dataset source, preprocessing, evaluation process, and random seed shall be documented, and the model version used for every estimate shall be recorded, so that results can be repeated. | `docs/ml_documentation.md` (planned); `uml/erd.drawio` (PREDICTION.model_version_id) | v0.2.0-design → v0.2.0-model; v0.2.0 (version recorded per estimate) | `src/ml`, `models/`, `src/db` | Rerun comparison (same metrics); integration test (version stored with each estimate) | Planned |
+| NFR-13 | Compatibility | The dashboard shall work on current desktop versions of Chrome, Edge, and Firefox. | Final checks | v1.0.0 | `src/dashboard` | Browser compatibility check (current Chrome, Edge, Firefox) | Planned |
+| NFR-14 | Accessibility | The primary workflows shall use readable text, meaningful labels, and keyboard-operable controls. | Final checks | v1.0.0 | `src/dashboard` | Accessibility check (readable text, labels, keyboard operation) | Planned |
+| NFR-15 | Scalability | The design shall allow more student records and users to be added without major architectural change. | `docs/architecture.md` §3 (SQLite with PostgreSQL option), §4.3 | v1.0.0 | `src/db`, `src/api` | Design review note | Planned |
+| NFR-16 | Testability | Every working increment shall include automated tests that pass before the pull request is merged. | Test plan in `docs/testing.md` (planned) | Every working increment (v0.1.0 onward) | `tests/` | Automated tests pass before each pull request is merged | Planned |
+| NFR-17 | Portability | The system shall run from documented, reproducible instructions on a clean machine. | Run instructions in README (planned) | v1.0.0 | `README.md` | Clean-machine install | Planned |
+ 
 ## Release roll-up
-
+ 
+Taken from the Plan table in `docs/incremental_development_plan.md`.
+ 
 | Release | Requirements covered |
 |---|---|
-| v0.1.0-design | FR-01..FR-10, FR-25 (design) |
+| v0.1.0-design | FR-01..FR-10, FR-25 |
 | v0.1.0 | FR-01..FR-10; NFR-02, NFR-07 |
-| v0.2.0-design | FR-11..FR-18; NFR-04, NFR-10, NFR-12 |
+| v0.2.0-design | FR-11..FR-18; NFR-10, NFR-12 |
 | v0.2.0-model | FR-11, FR-12; NFR-10, NFR-12 |
-| v0.2.0 | FR-13..FR-18, FR-25 (start); NFR-03, NFR-04, NFR-08 |
-| v0.3.0-design / v0.3.0 | FR-20, FR-21; NFR-09 |
-| v0.4.0-design / v0.4.0 | FR-19, FR-22..FR-25 |
-| v0.5.0-design / v0.5.0 | FR-25..FR-30; NFR-06, NFR-08 |
+| v0.2.0 | FR-13..FR-18, FR-25 (start); NFR-03, NFR-04 |
+| v0.3.0-design | FR-20, FR-21; NFR-09 |
+| v0.3.0 | FR-20, FR-21; NFR-09 |
+| v0.4.0-design | FR-19, FR-22..FR-24 |
+| v0.4.0 | FR-19, FR-22..FR-25 |
+| v0.5.0-design | FR-25..FR-30 |
+| v0.5.0 | FR-25..FR-30; NFR-06, NFR-08 (acceptance criteria) |
 | v1.0.0 | All FR and NFR; NFR-01, NFR-13, NFR-14, NFR-17 |

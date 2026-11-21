@@ -1,6 +1,20 @@
 ﻿# Incremental Development Plan
 
-Plan table
+## Versioning convention
+
+Versions follow `vMAJOR.MINOR.PATCH`.
+
+| Suffix / form | Meaning |
+|---|---|
+| `v0.x.0-design` | Design checkpoint: specification, diagrams, and prompt plan for the increment, reviewed and merged. No new application code. |
+| `v0.2.0-model` | Descriptive suffix for this project's ML-heavy increment: the trained, evaluated model and its documentation, before the prediction API and screens are built on it. Used once. |
+| `v0.x.0` | Working increment: implemented through the Agentic AI workflow, reviewed, tested, merged, and tagged. |
+| `v0.x.y` (y > 0) | Patch: a bug fix that adds no feature. |
+| `v1.0.0` | Final integrated release. |
+
+**Git rule (every row):** work on `feature/...`, `docs/...`, or `test/...` branches, open a pull request, have another member review and merge it into `dev`, merge `dev` into `main`, and **tag the merged commit**. Never delete branches.
+
+## Plan table
 
 | Version | Type | Capability / Scope | Deliverable / Evidence | Requirements / Design Links |
 |---|---|---|---|---|
@@ -21,6 +35,7 @@ Plan table
 
 ### v0.1.0-design: Context, containers, roles, data model, use cases
 
+- **Main question:** Do we have a reviewed design of who uses the system, what the containers are, and what data is stored, before any code is written?
 - **Tools:** draw.io, PlantUML, the coding agent for drafting (prompts recorded).
 - **Deliverables:** `uml/c4_context.drawio`, `uml/c4_container.drawio`, `uml/use_case.puml`, `uml/sequence_diagram.puml`, `uml/activity_diagram.puml`, `uml/class_diagram.drawio`, `uml/erd.drawio`, `docs/use_cases.md`, `docs/architecture.md`, `prompts/v0.1.0-design-*.md`.
 - **Acceptance criteria:**
@@ -33,6 +48,8 @@ Plan table
   - Pull request reviewed and merged, and `v0.1.0-design` is tagged on the merged commit.
 
 ### v0.1.0: Data, identities, sign-in, records, dashboard basics
+
+- **Main question:** Can an authorized user sign in and browse synthetic student records?
 - **Tools:** Coding agent, Python, SQLite, FastAPI, Streamlit, pytest.
 - **Deliverables:** database schema creation, `src/scripts/load_dataset.py`, authentication and role checks, student list, search, filter, profile, summary charts, `prompts/v0.1.0-*.md`.
 - **Acceptance criteria:**
@@ -45,6 +62,8 @@ Plan table
   - Pages load within 3 seconds in the demo setup (NFR-02).
 
 ### v0.2.0-design: ML pipeline and prediction service
+
+- **Main question:** How is the model built, evaluated, stored, and called, and what must be documented about the data and its risks?
 - **Tools:** draw.io or PlantUML, `docs/ml_documentation.md`.
 - **Deliverables:** `docs/ml_documentation.md` (dataset and license, target, preprocessing, split and validation strategy, metrics, how predictions are exposed, handling of sensitive attributes), updated component and sequence diagrams, ERD update (model version metadata).
 - **Acceptance criteria:**
@@ -55,6 +74,7 @@ Plan table
 
 ### v0.2.0-model: Trained and evaluated model
 
+- **Main question:** Does a reproducible pipeline produce a model whose weaknesses we understand?
 - **Tools:** coding agent, scikit-learn, joblib, pytest.
 - **Deliverables:** `src/ml/preprocessing.py`, `train.py`, `evaluate.py`, versioned model file and metadata in `models/`, evaluation report (in `docs/ml_documentation.md` or `docs/model_evaluation.md`), `prompts/v0.2.0-model-*.md`.
 - **Acceptance criteria:**
@@ -65,6 +85,7 @@ Plan table
 
 ### v0.2.0: Prediction API, estimate display, audit foundation
 
+- **Main question:** Can an advisor request an estimate and see a result that is clearly labelled and traceable to a model version?
 - **Tools:** coding agent, FastAPI, Streamlit, pytest.
 - **Deliverables:** prediction endpoint and service, estimate screen, prediction history, audit log table and writer, `prompts/v0.2.0-*.md`.
 - **Acceptance criteria:**
@@ -77,12 +98,14 @@ Plan table
 
 ### v0.3.0-design: Explanation module
 
+- **Main question:** Where does explanation logic live, and how is it worded so it is not read as causation?
 - **Tools:** draw.io or PlantUML.
 - **Deliverables:** updated sequence and class diagrams, chosen explanation method (SHAP or feature importance) and its justification in `ml_documentation.md`.
 - **Acceptance criteria:** the explanation call is in the sequence diagram, the explainer class and its relation to the model are in the class diagram, and the wording rule from NFR-09 is stated.
 
 ### v0.3.0: Contributing factors and global summary
 
+- **Main question:** Can an advisor see why the model produced an estimate?
 - **Tools:** coding agent, SHAP or scikit-learn, pytest.
 - **Deliverables:** `src/ml/explain.py`, factors on the student estimate screen, global feature summary page, `prompts/v0.3.0-*.md`.
 - **Acceptance criteria:**
@@ -93,12 +116,14 @@ Plan table
 
 ### v0.4.0-design: Follow-up workflow and override
 
+- **Main question:** What states can a follow-up have, and how does an advisor override an estimate while keeping the original?
 - **Tools:** draw.io or PlantUML.
 - **Deliverables:** state diagram (Open, In progress, Resolved, Closed), updated activity diagram, ERD and class updates if needed.
 - **Acceptance criteria:** allowed and rejected transitions are shown, override and dismissal flow is shown, and the original estimate stays on record.
 
 ### v0.4.0: Follow-ups, notes, override, audit of changes
 
+- **Main question:** Can advisors record and track support actions and record human decisions about estimates?
 - **Tools:** coding agent, FastAPI, SQLite, pytest.
 - **Deliverables:** follow-up create, update, and view; status history; override and dismiss with reason; audit entries; `prompts/v0.4.0-*.md`.
 - **Acceptance criteria:**
@@ -110,11 +135,14 @@ Plan table
 
 ### v0.5.0-design: Reports, export, user management, limitations
 
+- **Main question:** What aggregate views and transparency features do administrators need?
 - **Tools:** draw.io, PlantUML, mock-ups.
 - **Deliverables:** report mock-ups, DFD from dataset to prediction to report, deployment view, updated use cases if needed.
 - **Acceptance criteria:** mock-ups cover cohort report, export, user management, audit view, and limitations page, and the DFD shows no path where an estimate triggers an action automatically.
 
 ### v0.5.0: Reports, export, accounts, audit view, limitations page
+
+- **Main question:** Can an administrator monitor cohorts and understand the model's limits?
 - **Tools:** coding agent, FastAPI, Streamlit, pytest.
 - **Deliverables:** cohort report with filters, CSV export, user account management, audit log view, model limitations page, `prompts/v0.5.0-*.md`.
 - **Acceptance criteria:**
@@ -125,6 +153,8 @@ Plan table
   - Advisors cannot reach administrator functions (tested).
 
 ### v1.0.0: Final integrated release
+
+- **Main question:** Does the whole system work end to end, and do the documents describe what was actually built?
 - **Tools:** pytest, Pandoc (or another converter) for the PDF report.
 - **Deliverables:** final diagrams and rendered images, complete `testing.md`, `ai_development_log.md`, and `traceability_matrix.md`, run instructions, `report.md`, `se_report_group_02.pdf`.
 - **Acceptance criteria:**

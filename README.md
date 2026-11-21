@@ -54,6 +54,12 @@ README.md
 docs/        Requirements, project description, architecture, plans, testing, and reports
 instructions/ Course project instructions
 uml/      Editablle diagram sources; rendered/ holds exported images
+src/ Application source, generated and maintained through Agentic AI
+tests/ Unit, component, integration, and system tests
+data/ README, small samples and configuration
+prompts/ Markdown records of each agent task
+config/ Configuration files
+instructions/ Course project instructions
 ```
 
 ## 5. Incremental Development

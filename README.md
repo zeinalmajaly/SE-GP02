@@ -69,9 +69,9 @@ The project is planned in five increments: student-data dashboard, prediction se
 
 | Member | Main responsibility | Commits |
 |---|---|---|
-| Zein Al-Majali |  | `<n>` |
-| Randa Altajee |  | `<n>` |
-| Ahmed Sabri |  | `<n>` |
-| Nicole Ansara |  | `<n>` |
+| Zein Al-Majali | Create Repository, README, requirements, project description, prompts folder and data folder and reviewing others' work| `30` |
+| Randa Altajee | use case description, use case diagram, sequence diagram and activity diagram | `13` |
+| Ahmed Sabri | Architecture, C4 diagrams, Class diagram, and ERD diagram | `19` |
+| Nicole Ansara | incremental develpoment plan and traceability matrix  | `6` |
 
 Commit count alone does not determine contribution quality. Members also review AI-generated output on a rotating basis; see [docs/ai_development_log.md](docs/ai_development_log.md).

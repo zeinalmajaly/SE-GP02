@@ -52,8 +52,7 @@ Other UML diagrams are maintained separately from the C4 draw.io diagrams.
 ```text
 README.md
 docs/        Requirements, project description, architecture, plans, testing, and reports
-instructions/ Course project instructions
-uml/      Editablle diagram sources; rendered/ holds exported images
+uml/      Editable diagram sources; rendered/ holds exported images
 src/ Application source, generated and maintained through Agentic AI
 tests/ Unit, component, integration, and system tests
 data/ README, small samples and configuration
@@ -64,7 +63,7 @@ instructions/ Course project instructions
 
 ## 5. Incremental Development
 
-The project is planned in three increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
+The project is planned in five increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
 
 ## 6. Contributions
 

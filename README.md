@@ -41,8 +41,8 @@ The proposed system components and their communication are described in [docs/ar
 | [C4 Level 2: Containers](uml/c4_container.drawio) | Dashboard, API, prediction service, database, model artifact store, and communication paths. |
 | Use case diagram | User-facing functions for Advisors and Administrators. |
 | Sequence diagrams | Important interactions, such as student search and prediction generation. |
-| Class diagram | Main application classes and their relationships. |
-| Entity Relationship Diagram (ERD) | Planned database entities and their relationships. |
+| [Class diagram](uml/class_diagram.drawio) | Main domain classes and their relationships. |
+| [Entity Relationship Diagram (ERD)](uml/erd.drawio) | Proposed database entities, keys, and relationships. |
 | Activity diagram | Workflows such as generating predictions and recording support actions. |
 
 Other UML diagrams are maintained separately from the C4 draw.io diagrams.

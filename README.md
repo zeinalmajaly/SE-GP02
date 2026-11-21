@@ -39,7 +39,7 @@ The proposed system components and their communication are described in [docs/ar
 |---|---|
 | [C4 Level 1: System Context](uml/c4_context.drawio) | System boundary, user roles, and the external public dataset source. |
 | [C4 Level 2: Containers](uml/c4_container.drawio) | Dashboard, API, prediction service, database, model artifact store, and communication paths. |
-| [Use case diagram](uml/rendered/use_case.png) | User-facing functions for Advisors and Administrators. [Editable source](uml/use_case.puml). |
+| [Use case diagram](uml/rendered/use_case_diagram.png) | User-facing functions for Advisors and Administrators. [Editable source](uml/use_case.puml). |
 | [Sequence diagram](uml/rendered/sequence_diagram.puml.png) | Important interactions, such as student search and prediction generation. [Editable source](uml/sequence_diagram.puml). |
 | [Class diagram](uml/class_diagram.drawio) | Main domain classes and their relationships. |
 | [Entity Relationship Diagram (ERD)](uml/erd.drawio) | Proposed database entities, keys, and relationships. |

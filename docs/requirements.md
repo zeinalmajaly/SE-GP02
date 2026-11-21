@@ -111,5 +111,5 @@ This project aims to develop an AI-powered Student Success and Dropout-Risk Supp
 | NFR-13 | Compatibility | The dashboard shall work on current desktop versions of Chrome, Edge, and Firefox. | 
 | NFR-14 | Accessibility | The primary workflows shall use readable text, meaningful labels, and keyboard-operable controls. |
 | NFR-15 | Scalability | The design shall allow more student records and users to be added without major architectural change. | 
-| NFR-16 | Testability | Every working increment shall include automated tests that pass before the pull request is merged. | each increment |
+| NFR-16 | Testability | Every working increment shall include automated tests that pass before the pull request is merged. 
 | NFR-17 | Portability | The system shall run from documented, reproducible instructions on a clean machine. | 

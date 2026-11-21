@@ -5,8 +5,9 @@
 | --- | --- |
 | Advisor | Review student records and dashboard analytics, request and review outcome estimates, override or dismiss estimates, and manage follow-ups. |
 | Administrator | Review student records, dashboard analytics, prediction history, and follow-up history. View and export cohort reports, manage user accounts and roles, and review the audit log. |
+| Data/ML Engineer | Loads the dataset and creates synthetic identities (FR-04). Trains, evaluates, and publishes a versioned model (FR-11 and FR-12). |
 
-Both actors sign in to access protected features. They can view model limitations and sign out to end their session.
+The Advisor and Administrator sign in to access protected dashboard features. They can view model limitations and sign out to end their session.
 
 The Data/ML Engineer is a development time actor shown in the C4 architecture. The Engineer loads the dataset and creates synthetic identities (FR-04), then trains, evaluates, and publishes a versioned model (FR-11 and FR-12). These activities take place outside the dashboard.
 ## Sign In

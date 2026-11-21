@@ -1,32 +1,187 @@
-<mxfile host="app.diagrams.net" type="device">
+<mxfile host="app.diagrams.net">
   <diagram id="class" name="Class Diagram">
-    <mxGraphModel dx="1700" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1200">
+    <mxGraphModel dx="1893" dy="1059" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1450" math="0" shadow="0">
       <root>
-        <mxCell id="0"/><mxCell id="1" parent="0"/>
-        <mxCell id="title" value="Class Diagram - AI Student Success and Dropout-Risk Support System" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="250" y="25" width="1200" height="45" as="geometry"/></mxCell>
-        <mxCell id="note" value="Conceptual domain model. Advisor and Administrator are User roles; the exact implementation may refine these classes." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1"><mxGeometry x="350" y="80" width="1000" height="45" as="geometry"/></mxCell>
-
-        <mxCell id="user" value="&lt;b&gt;User&lt;/b&gt;&lt;hr/&gt;- userId: UUID&lt;br/&gt;- username: String&lt;br/&gt;- passwordHash: String&lt;br/&gt;- displayName: String&lt;br/&gt;- role: UserRole&lt;br/&gt;- isActive: Boolean&lt;br/&gt;&lt;hr/&gt;+ signIn(credentials)&lt;br/&gt;+ signOut()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="60" y="170" width="360" height="235" as="geometry"/></mxCell>
-        <mxCell id="student" value="&lt;b&gt;StudentRecord&lt;/b&gt;&lt;hr/&gt;- studentId: String (synthetic)&lt;br/&gt;- syntheticName: String&lt;br/&gt;- course: String&lt;br/&gt;- featureValues: Map&lt;br/&gt;- actualOutcome: OutcomeClass&lt;br/&gt;&lt;hr/&gt;+ getProfile()&lt;br/&gt;+ getModelInputs()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="650" y="170" width="400" height="225" as="geometry"/></mxCell>
-        <mxCell id="model" value="&lt;b&gt;ModelVersion&lt;/b&gt;&lt;hr/&gt;- versionId: String&lt;br/&gt;- artifactPath: String&lt;br/&gt;- publishedAt: DateTime&lt;br/&gt;- evaluationMetrics: Map&lt;br/&gt;- limitations: Text&lt;br/&gt;- globalFeatureSummary: Map&lt;br/&gt;&lt;hr/&gt;+ loadArtifact()&lt;br/&gt;+ getModelInformation()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="1240" y="170" width="400" height="245" as="geometry"/></mxCell>
-
-        <mxCell id="prediction" value="&lt;b&gt;Prediction&lt;/b&gt;&lt;hr/&gt;- predictionId: UUID&lt;br/&gt;- predictedOutcome: OutcomeClass&lt;br/&gt;- dropoutProbability: Decimal&lt;br/&gt;- enrolledProbability: Decimal&lt;br/&gt;- graduateProbability: Decimal&lt;br/&gt;- explanationFactors: List&lt;br/&gt;- generatedAt: DateTime&lt;br/&gt;- decisionStatus: DecisionStatus&lt;br/&gt;- decisionReason: Text?&lt;br/&gt;&lt;hr/&gt;+ recordOverride(outcome, reason)&lt;br/&gt;+ recordDismissal(reason)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="600" y="485" width="500" height="315" as="geometry"/></mxCell>
-
-        <mxCell id="followup" value="&lt;b&gt;FollowUpAction&lt;/b&gt;&lt;hr/&gt;- actionId: UUID&lt;br/&gt;- actionType: String&lt;br/&gt;- note: Text&lt;br/&gt;- assigneeUserId: UUID?&lt;br/&gt;- dueDate: Date?&lt;br/&gt;- status: FollowUpStatus&lt;br/&gt;- createdAt: DateTime&lt;br/&gt;&lt;hr/&gt;+ addNote(note)&lt;br/&gt;+ changeStatus(status)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="60" y="850" width="420" height="270" as="geometry"/></mxCell>
-        <mxCell id="history" value="&lt;b&gt;FollowUpStatusHistory&lt;/b&gt;&lt;hr/&gt;- historyId: UUID&lt;br/&gt;- oldStatus: FollowUpStatus?&lt;br/&gt;- newStatus: FollowUpStatus&lt;br/&gt;- note: Text?&lt;br/&gt;- changedAt: DateTime&lt;br/&gt;- changedByUserId: UUID&lt;br/&gt;&lt;hr/&gt;+ appendChange()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="650" y="875" width="420" height="225" as="geometry"/></mxCell>
-        <mxCell id="audit" value="&lt;b&gt;AuditEvent&lt;/b&gt;&lt;hr/&gt;- eventId: UUID&lt;br/&gt;- action: String&lt;br/&gt;- targetType: String&lt;br/&gt;- targetId: String&lt;br/&gt;- occurredAt: DateTime&lt;br/&gt;- details: Map&lt;br/&gt;&lt;hr/&gt;+ recordEvent()" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1"><mxGeometry x="1240" y="850" width="400" height="220" as="geometry"/></mxCell>
-
-        <mxCell id="e1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="user" target="prediction"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="520" y="285"/><mxPoint x="520" y="540"/></Array></mxGeometry></mxCell>
-        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="student" target="prediction"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="model" target="prediction"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1160" y="290"/><mxPoint x="1160" y="680"/></Array></mxGeometry></mxCell>
-        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="user" target="followup"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="30" y="285"/><mxPoint x="30" y="980"/></Array></mxGeometry></mxCell>
-        <mxCell id="e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="student" target="followup"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="550" y="280"/><mxPoint x="550" y="820"/><mxPoint x="500" y="820"/></Array></mxGeometry></mxCell>
-        <mxCell id="e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;dashed=1;dashPattern=6 4;" edge="1" parent="1" source="prediction" target="followup"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1140" y="720"/><mxPoint x="1140" y="825"/><mxPoint x="500" y="825"/></Array></mxGeometry></mxCell>
-        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="followup" target="history"><mxGeometry relative="1" as="geometry"/></mxCell>
-        <mxCell id="e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="user" target="audit"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="245" y="135"/><mxPoint x="1680" y="135"/><mxPoint x="1680" y="960"/></Array></mxGeometry></mxCell>
-        <mxCell id="e9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" edge="1" parent="1" source="user" target="history"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="30" y="300"/><mxPoint x="30" y="430"/><mxPoint x="490" y="430"/><mxPoint x="490" y="900"/></Array></mxGeometry></mxCell>
-
-        <mxCell id="mult" value="Association direction is omitted for readability. A parent object may have many related child objects; the matching foreign keys are shown in the ERD. Dashed association means the prediction link is optional." style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1"><mxGeometry x="330" y="1135" width="1050" height="40" as="geometry"/></mxCell>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" value="Class Diagram - AI Student Success and Dropout-Risk Support System" vertex="1">
+          <mxGeometry height="45" width="1200" x="250" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" value="Conceptual domain model. Advisor and Administrator are User roles. Student actual outcomes are retained only for demonstration and evaluation; predictions do not replace them." vertex="1">
+          <mxGeometry height="50" width="1100" x="300" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;User&lt;/b&gt;&lt;hr/&gt;- userId: UUID&lt;br/&gt;- username: String&lt;br/&gt;- passwordHash: String&lt;br/&gt;- displayName: String&lt;br/&gt;- role: UserRole&lt;br/&gt;- isActive: Boolean&lt;br/&gt;&lt;hr/&gt;+ signIn(credentials)&lt;br/&gt;+ signOut()" vertex="1">
+          <mxGeometry height="235" width="360" x="60" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="student" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;StudentRecord&lt;/b&gt;&lt;hr/&gt;- studentId: String (synthetic)&lt;br/&gt;- syntheticName: String&lt;br/&gt;- course: String&lt;br/&gt;- featureValues: Map&lt;br/&gt;- actualOutcome: OutcomeClass&lt;br/&gt;&lt;hr/&gt;+ getProfile()&lt;br/&gt;+ getModelInputs()" vertex="1">
+          <mxGeometry height="225" width="400" x="650" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="model" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;ModelVersion&lt;/b&gt;&lt;hr/&gt;- versionId: String&lt;br/&gt;- artifactPath: String&lt;br/&gt;- publishedAt: DateTime&lt;br/&gt;- intendedUse: Text&lt;br/&gt;- macroF1: Decimal&lt;br/&gt;- perClassRecall: Map&lt;br/&gt;- confusionMatrix: Matrix&lt;br/&gt;- limitations: Text&lt;br/&gt;- globalFeatureSummary: Map&lt;br/&gt;&lt;hr/&gt;+ loadArtifact()&lt;br/&gt;+ getModelInformation()" vertex="1">
+          <mxGeometry height="285" width="400" x="1240" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="prediction" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;Prediction&lt;/b&gt;&lt;hr/&gt;- predictionId: UUID&lt;br/&gt;- predictedOutcome: OutcomeClass (original)&lt;br/&gt;- overrideOutcome: OutcomeClass?&lt;br/&gt;- dropoutProbability: Decimal&lt;br/&gt;- enrolledProbability: Decimal&lt;br/&gt;- graduateProbability: Decimal&lt;br/&gt;- explanationFactors: List&lt;br/&gt;- generatedAt: DateTime&lt;br/&gt;- decisionStatus: DecisionStatus&lt;br/&gt;- decisionReason: Text?&lt;br/&gt;&lt;hr/&gt;+ recordOverride(outcome, reason)&lt;br/&gt;+ recordDismissal(reason)" vertex="1">
+          <mxGeometry height="335" width="500" x="600" y="485" as="geometry" />
+        </mxCell>
+        <mxCell id="followup" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;FollowUpAction&lt;/b&gt;&lt;hr/&gt;- actionId: UUID&lt;br/&gt;- actionType: String&lt;br/&gt;- assigneeUserId: UUID?&lt;br/&gt;- dueDate: Date?&lt;br/&gt;- status: FollowUpStatus&lt;br/&gt;- createdAt: DateTime&lt;br/&gt;&lt;hr/&gt;+ addNote(note) [appends history]&lt;br/&gt;+ changeStatus(status)" vertex="1">
+          <mxGeometry height="270" width="420" x="60" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="history" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;FollowUpStatusHistory&lt;/b&gt;&lt;hr/&gt;- historyId: UUID&lt;br/&gt;- eventType: CREATED | STATUS_CHANGED | NOTE_ADDED&lt;br/&gt;- oldStatus: FollowUpStatus?&lt;br/&gt;- newStatus: FollowUpStatus?&lt;br/&gt;- note: Text?&lt;br/&gt;- changedAt: DateTime&lt;br/&gt;- changedByUserId: UUID&lt;br/&gt;&lt;hr/&gt;+ appendChangeOrNote()" vertex="1">
+          <mxGeometry height="255" width="420" x="650" y="875" as="geometry" />
+        </mxCell>
+        <mxCell id="audit" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1f0ff;strokeColor=#6c8ebf;fontSize=13;align=left;verticalAlign=top;spacing=10;" value="&lt;b&gt;AuditEvent&lt;/b&gt;&lt;hr/&gt;- eventId: UUID&lt;br/&gt;- action: String&lt;br/&gt;- targetType: String&lt;br/&gt;- targetId: String&lt;br/&gt;- occurredAt: DateTime&lt;br/&gt;- details: Map&lt;br/&gt;&lt;hr/&gt;+ recordEvent()" vertex="1">
+          <mxGeometry height="220" width="400" x="1240" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;exitX=1;exitY=0.5;entryX=0;entryY=0.2;" target="prediction" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="285" />
+              <mxPoint x="450" y="540" />
+              <mxPoint x="580" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="student" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" target="prediction" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" target="prediction" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="290" />
+              <mxPoint x="1160" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;exitX=1;exitY=0.65;entryX=1;entryY=0;" target="followup" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="325" />
+              <mxPoint x="500" y="825" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="student" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;exitX=0;exitY=0.5;entryX=1;entryY=0;" target="followup" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="280" />
+              <mxPoint x="550" y="820" />
+              <mxPoint x="500" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="prediction" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;dashed=1;dashPattern=6 4;" target="followup" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="720" />
+              <mxPoint x="1140" y="825" />
+              <mxPoint x="500" y="825" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="followup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" target="history" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;" target="audit" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="245" y="135" />
+              <mxPoint x="1680" y="135" />
+              <mxPoint x="1680" y="960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;exitX=0;exitY=0.5;entryX=0.5;entryY=1;" target="history" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="287" />
+              <mxPoint x="30" y="1190" />
+              <mxPoint x="860" y="1190" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;strokeWidth=1.5;strokeColor=#555555;exitX=0.55;exitY=1;entryX=0.47;entryY=0;" target="followup" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mult" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;" value="Multiplicity is shown at each association end. The dashed prediction association is optional; follow-up notes are preserved as history entries." vertex="1">
+          <mxGeometry height="40" width="1100" x="300" y="1135" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="423" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="552" y="528" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="860" y="373" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="860" y="458" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="1195" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="m6" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="1102" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="m7" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="423" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="m8" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="482" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="m9" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="600" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="m10" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="503" y="795" as="geometry" />
+        </mxCell>
+        <mxCell id="m11" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..1" vertex="1">
+          <mxGeometry height="20" width="48" x="1102" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="m12" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="526" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="m13" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="482" y="963" as="geometry" />
+        </mxCell>
+        <mxCell id="m14" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="605" y="963" as="geometry" />
+        </mxCell>
+        <mxCell id="m15" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="221" y="143" as="geometry" />
+        </mxCell>
+        <mxCell id="m16" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="1625" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="m17" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="1" vertex="1">
+          <mxGeometry height="20" width="38" x="32" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="m18" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="837" y="1100" as="geometry" />
+        </mxCell>
+        <mxCell id="m19" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..1" vertex="1">
+          <mxGeometry height="20" width="48" x="267" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="m20" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="0..*" vertex="1">
+          <mxGeometry height="20" width="48" x="267" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="roleEnum" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;align=left;verticalAlign=top;spacing=8;" value="&lt;b&gt;«enumeration» UserRole&lt;/b&gt;&lt;hr/&gt;Advisor&lt;br/&gt;Administrator" vertex="1">
+          <mxGeometry height="130" width="330" x="60" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="outcomeEnum" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;align=left;verticalAlign=top;spacing=8;" value="&lt;b&gt;«enumeration» OutcomeClass&lt;/b&gt;&lt;hr/&gt;Dropout&lt;br/&gt;Enrolled&lt;br/&gt;Graduate" vertex="1">
+          <mxGeometry height="130" width="330" x="450" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="decisionEnum" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;align=left;verticalAlign=top;spacing=8;" value="&lt;b&gt;«enumeration» DecisionStatus&lt;/b&gt;&lt;hr/&gt;Pending&lt;br/&gt;Overridden&lt;br/&gt;Dismissed" vertex="1">
+          <mxGeometry height="130" width="330" x="840" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="followupEnum" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=13;align=left;verticalAlign=top;spacing=8;" value="&lt;b&gt;«enumeration» FollowUpStatus&lt;/b&gt;&lt;hr/&gt;Open&lt;br/&gt;In progress&lt;br/&gt;Resolved&lt;br/&gt;Closed" vertex="1">
+          <mxGeometry height="150" width="410" x="1230" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_created" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="created by" vertex="1">
+          <mxGeometry height="22" width="90" x="505" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_assigned" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fillColor=#FFFFFF;strokeColor=none;" value="assigned to" vertex="1">
+          <mxGeometry height="22" width="85" x="270" y="610" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

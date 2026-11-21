@@ -49,7 +49,7 @@ The database stores application state, separate from the model-training dataset.
 - synthetic student profiles and their enrollment/academic input fields;
 - demo users and roles needed by the prototype;
 - prediction results, including the class, explanation data, timestamp, and model version;
-- follow-up actions recorded by an Advisor; and
+- follow-up actions recorded by an Advisor, with notes and status changes kept as append-only history entries; and
 - audit events for relevant actions and report/export activity.
 
 SQLite is proposed because it is simple for a local course demo. PostgreSQL is an alternative if the team later needs a shared database for a hosted, multi-user demo. The database choice should be reflected in the implementation and deployment notes.
@@ -59,6 +59,8 @@ SQLite is proposed because it is simple for a local course demo. PostgreSQL is a
 The prediction service receives validated feature values from the API, applies the same feature preparation used for model training, loads the selected model artifact, and returns a predicted class and explanation information. It should report errors for invalid or incomplete input rather than presenting an untrustworthy estimate.
 
 Each saved prediction should retain the model version used so that the result can be traced to the model that produced it. The artifact metadata should identify at least the model version and its evaluation information. The model file is an application dependency; it is distinct from the application database.
+
+The prediction record keeps the original predicted outcome if an Advisor overrides or dismisses it. An override stores the replacement outcome and reason; the action is also recorded in the audit history. Follow-up notes are stored as history entries so later notes do not replace earlier ones. Model information includes intended use, limitations, macro-F1, per-class recall, a confusion matrix, and the global feature summary required for review.
 
 The precise explanation method depends on the model selected and should be documented with the model evaluation. The architecture requires the service to return explanation information but does not prescribe an explanation algorithm.
 

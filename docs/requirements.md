@@ -17,6 +17,7 @@ This project aims to develop an AI-powered Student Success and Dropout-Risk Supp
 ## 3. Data Source
 - **Dataset:** UCI "Predict Students' Dropout and Academic Success" (4,424 records, 36 features).
 - **Target:** Outcome with three classes: Dropout, Enrolled, Graduate.
+- **License**: (CC BY 4.0) license
 ## 4. Role Permissions
 |Function|Advisor|Administrator|
 |--|--|--|

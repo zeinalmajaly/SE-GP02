@@ -39,11 +39,11 @@ The proposed system components and their communication are described in [docs/ar
 |---|---|
 | [C4 Level 1: System Context](uml/c4_context.drawio) | System boundary, user roles, and the external public dataset source. |
 | [C4 Level 2: Containers](uml/c4_container.drawio) | Dashboard, API, prediction service, database, model artifact store, and communication paths. |
-| Use case diagram | User-facing functions for Advisors and Administrators. |
-| Sequence diagrams | Important interactions, such as student search and prediction generation. |
+| [Use case diagram](uml/rendered/use_case.png) | User-facing functions for Advisors and Administrators. [Editable source](uml/use_case.puml). |
+| [Sequence diagram](uml/rendered/sequence_diagram.puml.png) | Important interactions, such as student search and prediction generation. [Editable source](uml/sequence_diagram.puml). |
 | [Class diagram](uml/class_diagram.drawio) | Main domain classes and their relationships. |
 | [Entity Relationship Diagram (ERD)](uml/erd.drawio) | Proposed database entities, keys, and relationships. |
-| Activity diagram | Workflows such as generating predictions and recording support actions. |
+| [Activity diagram](uml/rendered/activity_diagram.png) | Workflows such as generating predictions and recording support actions. [Editable source](uml/activity_diagram.puml). |
 
 Other UML diagrams are maintained separately from the C4 draw.io diagrams.
 
@@ -52,21 +52,26 @@ Other UML diagrams are maintained separately from the C4 draw.io diagrams.
 ```text
 README.md
 docs/        Requirements, project description, architecture, plans, testing, and reports
+uml/      Editable diagram sources; rendered/ holds exported images
+src/ Application source, generated and maintained through Agentic AI
+tests/ Unit, component, integration, and system tests
+data/ README, small samples and configuration
+prompts/ Markdown records of each agent task
+config/ Configuration files
 instructions/ Course project instructions
-uml/      Editablle diagram sources; rendered/ holds exported images
 ```
 
 ## 5. Incremental Development
 
-The project is planned in three increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
+The project is planned in five increments: student-data dashboard, prediction service, and explanations/follow-up/reporting. See [docs/incremental_development_plan.md](docs/incremental_development_plan.md) for details.
 
 ## 6. Contributions
 
 | Member | Main responsibility | Commits |
 |---|---|---|
-| Zein Al-Majali |  | `<n>` |
-| Randa Altajee |  | `<n>` |
-| Ahmed Sabri |  | `<n>` |
-| Nicole Ansara |  | `<n>` |
+| Zein Al-Majali | Create Repository, README, requirements, project description, prompts folder and data folder and reviewing others' work| `30` |
+| Randa Altajee | use case description, use case diagram, sequence diagram and activity diagram | `13` |
+| Ahmed Sabri | Architecture, C4 diagrams, Class diagram, and ERD diagram | `19` |
+| Nicole Ansara | incremental develpoment plan and traceability matrix  | `6` |
 
 Commit count alone does not determine contribution quality. Members also review AI-generated output on a rotating basis; see [docs/ai_development_log.md](docs/ai_development_log.md).

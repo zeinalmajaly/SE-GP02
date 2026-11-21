@@ -4,6 +4,7 @@ left to right direction
 
 actor Advisor
 actor Administrator
+actor "Data/ML Engineer" as Engineer
 
 rectangle "AI Student Success and Dropout-Risk Support System" {
   usecase "Sign in and sign out" as Session
@@ -19,6 +20,8 @@ rectangle "AI Student Success and Dropout-Risk Support System" {
   usecase "Export report data as CSV" as Export
   usecase "Manage user accounts and roles" as Accounts
   usecase "View audit log" as Audit
+    usecase "Load dataset and create\nsynthetic identities" as LoadData
+  usecase "Train, evaluate, and\npublish model" as PublishModel
 }
 
 Advisor -- Session
@@ -38,7 +41,11 @@ Administrator -- History
 Administrator -- FollowHistory
 Administrator -- Model
 Administrator -- Reports
-Administrator -- Export
+Administrator -- Export 
+
+
 Administrator -- Accounts
 Administrator -- Audit
+Engineer -- LoadData
+Engineer -- PublishModel
 @enduml
